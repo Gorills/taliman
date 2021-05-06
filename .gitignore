@@ -1,0 +1,16 @@
+
+*.egg-info
+*.pot
+*.py[co]
+.tox/
+__pycache__
+MANIFEST
+
+tests/coverage_html/
+tests/.coverage
+build/
+tests/report/
+media
+db.sqlite3
+main/secret_key.py
+main/settings.py

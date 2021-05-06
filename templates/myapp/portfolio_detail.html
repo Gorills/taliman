@@ -1,0 +1,105 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ object.meta_title }} {% endblock %}
+{% block description %} {{ object.meta_description }} {% endblock %}
+{% block keywords %} {{ object.meta_keywords}} {% endblock %}
+{% block canonical %} {{ object.get_absolute_url }} {% endblock %}
+{% block og:title %} {{ object.meta_title }} {% endblock %}
+{% block og:description %} {{ object.meta_description }} {% endblock %}
+{% block og:url %} {{ object.get_absolute_url }} {% endblock %}
+{% block twitter:title %} {{ object.meta_title }}{% endblock %}
+{% block twitter:description %} {{ object.meta_description }}{% endblock %}
+
+
+{% block body %}
+{% load static %}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h1 class="breadcrumbs__title">{{ object.title }}</h1>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'portfolio' %}">
+                        <span itemprop="name">Портфолио</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+               
+
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">{{ object.title }}</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ object.breadcrumbs.url }}" alt="{{ object.title }}" class="breadcrumbs__img">
+</div>
+
+
+{% load sorl_thumbnail %}
+
+<div class="portfolio-detail">
+    <div class="container">
+        <div class="portfolio-detail__inner">
+            <div class="portfolio-detail__wrap">
+                <div class="portfolio-detail__column">
+                    <div class="portfolio-detail__slider">
+                        {% for image in object.image.all %}
+                        <a href="{{ image.image.url }}" class="portfolio-detail__slider-item">
+                            <img class="portfolio-detail__slider-img" src="{{ image.image.url }}" alt="{{ object.title }}">
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="portfolio-detail__nav">
+                        {% for image in object.image.all %}
+
+                            {% thumbnail image.image "100x100" crop="center" as im %}
+                                <div class="portfolio-detail__nav-item">
+                                    <img class="portfolio-detail__nav-img" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }}">
+                                </div>
+                            {% endthumbnail %}
+                            
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="portfolio-detail__column">
+                    <p class="portfolio-detail__price">Цена: {{ object.price }} руб.</p>
+                    {% for property in object.property.all %}
+                        <div class="portfolio-detail__column-item">
+                            <p class="portfolio-detail__column-property">{{ property.title }}:</p>
+                            <p class="portfolio-detail__column-data">{{ property.data }}</p>
+                        </div>
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>
+
+            <div class="portfolio-detail__bottom">
+                <p class="portfolio-detail__description">{{ object.description | safe }}</p>
+            
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

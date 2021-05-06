@@ -1,0 +1,211 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ setup.meta_title }} {% endblock %}
+{% block description %} {{ setup.meta_description }} {% endblock %}
+{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
+{% block canonical %} {{ setup.domen }} {% endblock %}
+{% block og:title %} {{ setup.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ setup.domen }} {% endblock %}
+{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
+{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
+{% block og:site_name %} {{ setup.domen }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h2 class="breadcrumbs__title">О нас</h2>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+             
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">О нас</span>
+                    <meta itemprop="position" content="2" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ breadcrumbs.about.url }}" alt="" class="breadcrumbs__img">
+</div>
+
+<div class="about">
+    <div class="container">
+        <div class="about__inner">
+            <div class="about__left"> 
+                <img src="{% static 'images/about.jpg' %}" alt="" class="about__img">
+            
+            </div>
+            <div class="about__right">
+                <h3 class="about__subtitle">О нас</h3>
+                <h2 class="about__title">История Компании</h2>
+
+                <p class="about__text">
+                On the other hand, we denounce with righteous indignation the foult anuals dislike men who are so beguiled and demoralized by the nuhaiicharms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound toen sue; and equal blame belongs to those who fail in their duty...
+                
+                </p>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+
+<div class="about-per">
+    <div class="container">
+        <div class="about-per__inner">
+            <div class="about-per__item">
+                <i class="about-per__icon fas fa-map-marker-alt"></i>
+                <div class="about-per__wrap">
+                <p class="about-per__count">850</p>
+                <p class="about-per__text">Выполненных заказов</p>
+                </div>
+            </div>
+              <div class="about-per__item">
+                <i class="about-per__icon fas fa-map-marker-alt"></i>
+                <div class="about-per__wrap">
+                <p class="about-per__count">40</p>
+                <p class="about-per__text">Человек в штате</p>
+                </div>
+            </div>
+               <div class="about-per__item">
+                <i class="about-per__icon fas fa-map-marker-alt"></i>
+                <div class="about-per__wrap">
+                <p class="about-per__count">250</p>
+                <p class="about-per__text">Разработанных проектов</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="about-clients">
+    
+        <div class="about-clients__inner">
+            <div class="about-clients__column about-clients__ptimary">
+                <p class="about-clients__subtitle white">Наши клиеты</p>
+                <h3 class="about-clients__title about-clients__after-white">Отзывы о нашей работе</h3>
+                <p class="about-clients__text white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+
+                <div class="about-clients__feedback">
+                    <div class="about-clients__feedback-item">
+                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
+                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
+                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
+                    </div>
+                    <div class="about-clients__feedback-item">
+                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
+                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
+                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
+                    </div>
+                    <div class="about-clients__feedback-item">
+                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
+                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
+                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
+                    </div>                    
+                
+                </div>
+                <center><a href="#" class="btn about-clients__btn">Оставить отзыв</a></center>
+                
+            </div>
+            <div class="about-clients__column taend">
+                <p class="about-clients__subtitle primary">Наши клиенты</p>
+                <h3 class="about-clients__title about-clients__after-primary">Клиенты, с которыми мы работаем</h3>
+                <p class="about-clients__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                <div class="about-clients__partner">
+                    <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>
+                     <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>
+                     <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>
+                     <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>
+                     <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>
+                     <a href="" class="about-clients__item">
+                        <img src="{% static 'images/client1.png' %}" alt="">
+                    </a>                                        
+                
+                </div>
+            
+            </div>
+        </div>
+
+</div>
+
+<div class="about-partners">
+    <div class="container">
+        <div class="about-partners__inner">
+            <p class="subtitle"></p>
+            <h2 class="title">Наши партнеры</h2>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore recusandae ea dolores rem laborum dignissimos molestiae, in delectus dolore autem deserunt voluptate maiores soluta debitis accusantium blanditiis obcaecati esse beatae.</p>
+            <div class="about-partners__wrapper">
+            <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+             <a href="" class="about-partners__item">
+                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
+            </a>
+            
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="about-contacts">
+    <div class="container">
+        <div class="about-contacts__inner">
+            <p class="subtitle">Форма обратной связи</p>
+            <h3 class="title">Заказать звонок</h3>
+            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eos sunt doloribus omnis iure ullam reprehenderit dolorum ea laudantium repellendus quasi, voluptatem temporibus sed, quis ab cupiditate? Similique, nisi voluptatum.</p>
+            <form action="#" class="about-contacts__form">
+            <input type="text" class="about-contacts__input" placeholder="Имя">
+            <input type="text" class="about-contacts__input" placeholder="Телефон">
+            
+            
+            <button class="btn-primary about-contacts__btn">Отправить</button>
+            
+            </form>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}

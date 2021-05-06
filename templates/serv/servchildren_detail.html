@@ -1,0 +1,82 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ setup.meta_title }} {% endblock %}
+{% block description %} {{ setup.meta_description }} {% endblock %}
+{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
+{% block canonical %} {{ setup.domen }} {% endblock %}
+{% block og:title %} {{ setup.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ setup.domen }} {% endblock %}
+{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
+{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
+{% block og:site_name %} {{ setup.domen }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h2 class="breadcrumbs__title">{{ children.title }}</h2>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item" itemid="{% url 'serv' %}"
+                    href="{% url 'serv' %}">
+                    <span itemprop="name">Услуги</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+
+                 <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item" itemid="{{ children.parent.get_absolute_url }}"
+                    href="{{ children.parent.get_absolute_url }}">
+                    <span itemprop="name">{{ children.parent.title }}</span></a>
+                    <meta itemprop="position" content="3" />
+                </li>
+
+
+
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">{{ children.title }}</span>
+                    <meta itemprop="position" content="4" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ children.image.url }}" alt="" class="breadcrumbs__img">
+</div>
+
+
+<div class="serv_detail">
+    <div class="container">
+        <div class="serv_detail__inner">
+           
+        
+             <div class="serv_detail__desc">
+                {{ children.text | safe}}
+            
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

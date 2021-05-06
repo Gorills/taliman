@@ -1,0 +1,92 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ setup.meta_title }} {% endblock %}
+{% block description %} {{ setup.meta_description }} {% endblock %}
+{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
+{% block canonical %} {{ setup.domen }} {% endblock %}
+{% block og:title %} {{ setup.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ setup.domen }} {% endblock %}
+{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
+{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
+{% block og:site_name %} {{ setup.domen }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h2 class="breadcrumbs__title">Портфолио</h2>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+            
+
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Отзывы</span>
+                    <meta itemprop="position" content="2" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ breadcrumbs.portfolio.url }}" alt="" class="breadcrumbs__img">
+</div>
+
+<div class="portfolio-list">
+  <div class="container">
+    <div class="portfolio-list__inner">
+        <h1 class="title">Наше портфолио</h1>   
+
+        <div class="portfolio-list__grid">
+          {% for image in page_obj %}
+            <div class="portfolio-list__item">
+              <img class="portfolio-list__img" src="{{ image.image.url }}" alt="{{ image.title }}">
+            </div>
+          {% endfor %}
+          
+          
+          
+        
+        </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+  {% if page_obj.has_other_pages %}
+  <div class="pagination">
+    <ul class="pagination__list">
+      {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+
+
+{% endblock %}

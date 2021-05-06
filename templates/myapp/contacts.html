@@ -1,0 +1,96 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ setup.meta_title }} {% endblock %}
+{% block description %} {{ setup.meta_description }} {% endblock %}
+{% block keywords %} {{ setup.meta_keywords}} {% endblock %}
+{% block canonical %} {{ setup.domen }} {% endblock %}
+{% block og:title %} {{ setup.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ setup.domen }} {% endblock %}
+{% block twitter:title %} {{ setup.meta_title }}{% endblock %}
+{% block twitter:description %} {{ setup.meta_description }}{% endblock %}
+{% block og:site_name %} {{ setup.domen }}{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h2 class="breadcrumbs__title">Контакты</h2>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+             
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Контакты</span>
+                    <meta itemprop="position" content="2" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ breadcrumbs.about.url }}" alt="" class="breadcrumbs__img">
+</div>
+
+
+<div class="contacts">
+    <div class="container">
+        <div class="contacts__inner">
+            <div class="contacts__column contacts__bg-primary">
+                <h2 class="contacts__title">Есть вопросы? Мы перезвоним Вам!</h2>
+                <form action="#" class="contacts__form">
+                    <div class="contacts__form-wrap">
+                        <input type="text" class="contacts__input" placeholder="Имя">
+                        <input type="email" class="contacts__input" placeholder="Email">
+                    </div>
+                    <div class="contacts__form-wrap">
+                        <input type="tel" class="contacts__input" placeholder="Телефон">
+                        <input type="text" class="contacts__input" placeholder="Тема сообщения">
+                    </div>
+
+                    <textarea class="contacts__textarea" name="" id="" cols="30" rows="10" placeholder="Сообщение"></textarea>
+                    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
+                        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+                        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+                    </small>
+                    <button class="btn contacts__btn">Отправить</button>
+                </form>
+            
+            </div>
+            <div class="contacts__column contacts__column-contacts">
+                <h2 class="contacts__title">Мы будем рады ответить на Ваши вопросы по телефону или электронной почте.</h2>
+            
+                <div class="contacts__column-item">
+                    <div class="contacts__column-wrap">
+                        <i class="far fa-envelope"></i> Email:
+
+                    </div>
+                    <a href="mailto:{{ setup.email }}" class="contacts__column-link">{{ setup.email }}</a>
+
+                </div>
+                  <div class="contacts__column-item">
+                    <div class="contacts__column-wrap">
+                        <i class="fas fa-phone"></i> Телефоны:
+                    </div>
+                    {% for tel in setup.phone.all %}
+                        <a href="tel:{{ tel.phone }}" class="contacts__column-link"> {{ tel.phone }}</a>
+                    {% endfor %}
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,297 @@
+{% load static %}
+{% load recaptcha3 %}
+{% load sorl_thumbnail %}
+{% load djsingleton %}
+{% get_singleton 'myapp' 'Config' as setup %}
+{% get_singleton 'myapp' 'Meta' as meta %}
+{% get_singleton 'myapp' 'Breadcrumbs' as breadcrumbs %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+
+    <title> {% block title %}{% endblock %} | {{ meta.meta_subtitle }}</title>
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical %}{% endblock %}" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content="{% block og:title %}{% endblock %}" />
+    <meta property="og:description" content="{% block og:description %}{% endblock %}" />
+    <meta property="og:url" content="{% block og:url %}{% endblock %}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{% block twitter:title %}{% endblock %}" />
+    <meta name="twitter:description" content="{% block twitter:description %}{% endblock %}" />
+    <meta name="theme-color" content="#2b2a28">
+    <meta property="og:site_name" content="{{ meta.domen }}" />
+
+    <meta property="vk:image" content="{% static 'images/social/vk.png' %}" />
+    <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
+    <meta property="og:image" content="{% static 'images/social/vk.png' %}" />
+    <link rel="shortcut icon" href="{% static 'images/fav/favicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="{% static 'images/fav/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'images/fav/apple-touch-icon.png' %}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/fav/apple-touch-icon-57x57.png' %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/fav/apple-touch-icon-72x72.png' %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/fav/apple-touch-icon-76x76.png' %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/fav/apple-touch-icon-114x114.png' %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/fav/apple-touch-icon-120x120.png' %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/fav/apple-touch-icon-144x144.png' %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/fav/apple-touch-icon-152x152.png' %}" />
+    <script src="https://kit.fontawesome.com/0af96d350a.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/fav/apple-touch-icon-180x180.png' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?{% now "H:i:s" %}"/>
+    <link href="{% static 'css/style.css' %}?{% now "H:i:s" %}" rel="stylesheet">
+    {% recaptcha_init %}
+    {% recaptcha_ready action_name='homepage' %}
+   
+</head>
+
+<body>
+
+
+<header class="header">
+    
+    <div class="header__inner">
+
+        <div class="header__top close">
+            <div class="container-fluid">
+                <div class="header__top-wrap">
+                    <div class="header__contacts">
+                        {% for tel in setup.phone.all %}
+                        <a href="tel:{{ tel.phone }}" class="header__contacts-link"><i class="fas fa-phone"></i> {{ tel.phone }}</a>
+                        {% endfor %}
+                        <a href="mailto:{{ setup.email }}" class="header__contacts-link"><i class="far fa-envelope"></i> {{ setup.email }}</a>
+                        
+                        
+
+                    </div>
+                    <div class="header__social">
+                        {% for social in setup.social.all %}
+                        <a href="{{ social.link }}" class="header__social-link">{{ social.icon | safe }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <div class="container-fluid">
+                <div class="header__bottom-wrap">
+
+                    {% if setup.logo_img %}
+                        {% thumbnail setup.logo "150x52" crop="center" format="PNG" as im %}
+                            <a href="{% url 'index' %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"alt="{{ setup.name }}"></a>
+                        {% endthumbnail %}
+                    {% else %}
+
+                        <a href="{% url 'index' %}" class="header__logo-wrap">
+                            {{ setup.logo_text }}
+                        </a>
+
+                    {% endif %}
+
+                    <div class="header__bottom-menu">
+                        <a class="header__bottom-menu-link" href="#"><i class="fas fa-bars"></i>Меню</a>
+                    </div>
+
+
+
+
+
+
+                    <nav class="header__nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        
+
+                        <ul class="header__list" itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="{% url 'index' %}">Главная</a>
+                                <meta itemprop="name" content="Главная" />
+                            </li>
+
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link header__item-drop" itemprop="url" href="{% url 'serv' %}">Услуги <i class="fas fa-chevron-down"></i></a>
+                                <meta itemprop="name" content="{Анкор ссылки-2}" />
+
+                            </li>
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="{% url 'portfolio' %}">Портфолио</a>
+                                <meta itemprop="name" content="Контакты" />
+                            </li>
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="#">Отзывы</a>
+                                <meta itemprop="name" content="Контакты" />
+                            </li>
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="#">Акции</a>
+                                <meta itemprop="name" content="Контакты" />
+                            </li>
+
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="{% url 'about' %}">О нас</a>
+                                <meta itemprop="name" content="О нас" />
+                            </li>
+
+
+                            <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                <a class="header__link close" itemprop="url" href="{% url 'contacts' %}">Контакты</a>
+                                <meta itemprop="name" content="Контакты" />
+                            </li>
+
+                        </ul>
+
+
+                    </nav>
+
+                    <div class="header__btn-wrap">
+                        <a href="#" class="btn show-popup">Заказать звонок</a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="header__dropdown">
+                <div class="container-fluid">
+                    <div class="header__dropdown-inner">
+                        <ul class="header__list-drop" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+
+                            {% for serv in request.serv_list %}
+                                <li class="header__parent-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                    <a class="header__drop-link ttu" itemprop="url" href="{{ serv.get_absolute_url }}">{{ serv.title }}</a>
+                                    <meta itemprop="name" content="{{ serv.title }}" />
+
+                                    <ul class="header__list-children" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+
+                                    {% for children in serv.children.all %}
+                                        <li class="header__drop-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                                            <a class="header__drop-link" itemprop="url" href="{{ children.get_absolute_url }}">{{ children.title }}</a>
+                                            <meta itemprop="name" content="{{ children.title }}" />
+                                        </li>
+                                    {% endfor %}
+                                        
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                            
+                            
+                        </ul>
+                        <a href="{% url 'serv' %}" class="header__dropdown-bot-link">Услуги</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__bottom-block"></div>
+</header>
+
+<div class="nav-closer"></div>
+
+
+    {% block body %}
+    {% endblock %}
+
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__inner">
+            <div class="footer__column">
+                <h3 class="footer__title">Меню</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="{% url 'index' %}" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="{% url 'about' %}" class="footer__link">О нас</a></li>
+                    <li class="footer__item"><a href="{% url 'serv' %}" class="footer__link">Услуги</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Проекты</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Контакты</a></li>
+                </ul>
+
+
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__title">Галерея</h3>
+                <div class="footer__wrap">
+                    <div class="footer__img-wrapper">
+                        <img src="{% static 'images/about.jpg' %}" alt="" class="footer__img">
+                    </div>
+                     <div class="footer__img-wrapper">
+                        <img src="{% static 'images/newbg.jpg' %}" alt="" class="footer__img">
+                    </div>
+                     <div class="footer__img-wrapper">
+                        <img src="{% static 'images/about.jpg' %}" alt="" class="footer__img">
+                    </div>
+                     <div class="footer__img-wrapper">
+                        <img src="{% static 'images/newbg.jpg' %}" alt="" class="footer__img">
+                    </div>
+                     <div class="footer__img-wrapper">
+                        <img src="{% static 'images/about.jpg' %}" alt="" class="footer__img">
+                    </div>
+                     <div class="footer__img-wrapper">
+                        <img src="{% static 'images/newbg.jpg' %}" alt="" class="footer__img">
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__title">Быстрые ссылки</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="#" class="footer__link">Галерея</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Акции</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Ремонты</a></li>
+               
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__title">Контакты</h3>
+                 {% for tel in setup.phone.all %}
+                <a href="tel:{{ tel.phone }}" class="footer__contacts"><i class="fas fa-phone"></i> {{ tel.phone }}</a>
+                {% endfor %}
+                <a href="mailto:{{ setup.email }}" class="footer__contacts"><i class="far fa-envelope"></i> {{ setup.email }}</a>
+                
+
+            </div>
+
+        
+        </div>
+    </div>
+</footer>
+
+<div class="popup__closer"></div>
+<div class="popup">
+    <i class="popup__icon fas fa-times"></i>
+    <div class="popup__inner">
+    
+    <form action="#" class="popup__form">
+    <input type="text" class="popup__input">
+    <input type="text" class="popup__input">
+    <input name="page" hidden="hidden" value="{{ request.get_full_path }}"  type="text" class="popup__input">
+    <textarea class="popup__input" rows="8"></textarea>
+    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
+        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </small>
+    <button class="popup__btn">Отправить</button>
+    
+    </form>
+    
+    
+    </div>
+</div>
+
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static 'js/script.js' %}?{% now 'H:i:s' %}"></script>
+
+</body>
+
+</html>

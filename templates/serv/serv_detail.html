@@ -1,0 +1,115 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ serv.meta_title }} {% endblock %}
+{% block description %} {{ serv.meta_description }} {% endblock %}
+{% block keywords %} {{ serv.meta_keywords}} {% endblock %}
+{% block canonical %} {{ serv.get_absolute_url }} {% endblock %}
+{% block og:title %} {{ serv.meta_title }} {% endblock %}
+{% block og:description %} {{ setup.meta_description }} {% endblock %}
+{% block og:url %} {{ serv.get_absolute_url }} {% endblock %}
+{% block twitter:title %} {{ serv.meta_title }}{% endblock %}
+{% block twitter:description %} {{ serv.meta_description }}{% endblock %}
+
+
+{% block body %}
+{% load static %}
+{% load sorl_thumbnail %}
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h2 class="breadcrumbs__title">{{ serv.title }}</h2>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item" itemid="{% url 'serv' %}"
+                    href="{% url 'serv' %}">
+                    <span itemprop="name">Услуги</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+
+                <li class="breadcrumbs__item breadcrumbs__item--active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">{{ serv.title }}</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ serv.image_prew.url }}" alt="" class="breadcrumbs__img">
+</div>
+
+<div class="serv_detail">
+    <div class="container">
+        <div class="serv_detail__inner">
+           
+            
+
+            <div class="serv_detail__wrapper">
+                {% for cild in serv.children.all %}
+                
+                    <a href="{{ cild.get_absolute_url}}" class="serv_detail__item">
+                        <div class="serv_detail__item-wrap">
+                            <h3 class="serv_detail__title">{{ cild.title }}</h3>
+                            <p class="serv_detail__subtitle">{{ cild.description }}</p>
+                        </div>
+                        <img src="{{ cild.image.url }}" alt="" class="serv_detail__img">
+                    </a>
+                {% endfor %}
+            </div>
+
+             <div class="serv_detail__desc">
+                {{ serv.description }}
+            
+            </div>
+        
+        </div>
+
+        <div class="serv_detail__slider-wrap">
+            <div class="serv_detail__slider">
+                {% for image in serv.image.all%}
+                <a href="{{ image.image.url }}" class="serv_detail__slider-item">
+                    <img class="serv_detail__slider-img" src="{{ image.image.url }}" alt="{{ object.title }}">
+                </a>
+                {% endfor %}
+            </div>
+
+            <div class="serv_detail__nav">
+                {% for image in serv.image.all %}
+
+                    {% thumbnail image.image "100x100" crop="center" as im %}
+                        <div class="serv_detail__nav-item">
+                            <img class="serv_detail__nav-img" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }}">
+                        </div>
+                    {% endthumbnail %}
+                    
+                {% endfor %}
+            </div>
+
+          
+
+
+
+        </div>
+    </div>
+</div>
+
+
+    
+
+
+
+
+
+
+
+{% endblock %}

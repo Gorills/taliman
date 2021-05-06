@@ -1,0 +1,139 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ meta.meta_title }} {% endblock %}
+{% block description %} {{ meta.meta_description }} {% endblock %}
+{% block keywords %} {{ meta.meta_keywords}} {% endblock %}
+{% block canonical %} {{ meta.domen }} {% endblock %}
+{% block og:title %} {{ meta.meta_title }} {% endblock %}
+{% block og:description %} {{ meta.meta_description }} {% endblock %}
+{% block og:url %} {{ meta.domen }} {% endblock %}
+{% block twitter:title %} {{ meta.meta_title }}{% endblock %}
+{% block twitter:description %} {{ meta.meta_description }}{% endblock %}
+
+
+{% block body %}
+{% load static %}
+
+<div class="slider">
+    {% for slide in slides %}
+    <div class="slider__slide">
+        <div class="container">
+            <div class="slider__inner">
+                <h2 class="slider__title">{{ slide.title }}</h2>
+                <p class="slider__subtitle">{{ slide.description }}</p>
+
+                <div class="slider__wrap">
+                    <a href="{{ slide.parent.get_absolute_url }}" class="btn-primary">Подробнее</a>
+                    <a href="#" class="btn show-popup">Оставить заявку</a>
+                </div>
+
+            </div>
+        </div>
+        <img class="slider__img" src="{{ slide.image.url }}" alt="">
+    </div>
+
+    {% endfor %}
+    
+</div>
+
+
+<div class="about">
+    <div class="container">
+        <div class="about__inner">
+            <div class="about__left"> 
+                <img src="{% static 'images/about.jpg' %}" alt="" class="about__img">
+            
+            </div>
+            <div class="about__right">
+                <h3 class="about__subtitle">О нас</h3>
+                <h2 class="about__title">История Компании</h2>
+
+                <p class="about__text">
+                On the other hand, we denounce with righteous indignation the foult anuals dislike men who are so beguiled and demoralized by the nuhaiicharms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound toen sue; and equal blame belongs to those who fail in their duty...
+                <a href="{% url 'about' %}" class="about__link"> Читать больше</a>
+                </p>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+<section class="category">
+    <div class="container">
+        <div class="category__inner">
+            <p class="subtitle">Наши услуги</p>
+            <h2 class="title">Мы строим дома всех видов</h2>
+            <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut cumque quaerat nemo deleniti ullam vero?</p>
+       
+            <div class="category__slider">
+                {% for serv in request.serv_list %}
+                <a href="{{ serv.get_absolute_url }}" class="category__item">
+                    <img class="category__item-img" src="{{ serv.image_prew.url }}" alt="">
+                    <div class="category__item-wrap">
+                        <h3 class="category__item-title">{{ serv.title }}</h3>
+                        <p class="category__item-subtitle">{{ serv.description }}</p>
+                    </div>
+
+                </a>
+                {% endfor %}
+            
+            
+            </div>
+
+            <div class="category__bottom">
+                <div class="category__bottom-item">
+                    <img class="category__bottom-img" src="{% static 'images/home-main.svg' %}" alt="">
+                    <div class="category__bottom-title">Проектирование</div>
+                </div>
+                <div class="category__bottom-item">
+                    <img class="category__bottom-img" src="{% static 'images/gen-const.svg' %}" alt="">
+                    <div class="category__bottom-title">Строительство</div>
+                </div>
+                <div class="category__bottom-item">
+                    <img class="category__bottom-img" src="{% static 'images/restructer.svg' %}" alt="">
+                    <div class="category__bottom-title">Ремонты</div>
+                </div>
+                <div class="category__bottom-item">
+                    <img class="category__bottom-img" src="{% static 'images/project-m.svg' %}" alt="">
+                    <div class="category__bottom-title">Констультации</div>
+                </div>
+            
+            </div>
+
+
+       
+        </div>
+    </div>
+    <img src="{% static 'images/category.jpg' %}" alt="" class="category__bg">
+</section>
+
+
+<section class="portfolio">
+    <div class="container">
+        <div class="portfolio__inner">
+            <p class="subtitle">Наше портфолио</p>
+            <h2 class="title">Некоторые наши работы</h2>
+            <p class="description">Галерея наших работ и проектов по строительству домов и дугих сооружений 
+            из дерева и кирпича.
+            </p>
+
+            <div class="portfolio__slider">
+                {% for portfolio in portfolios %}
+                <a href="{{ portfolio.get_absolute_url }}" class="category__item">
+                    <img class="category__item-img" src="{{ portfolio.breadcrumbs.url }}" alt="{{ portfolio.title }}">
+                {% endfor %}
+
+                </a>
+                
+            
+            
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
