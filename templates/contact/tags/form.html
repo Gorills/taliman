@@ -1,0 +1,18 @@
+<div class="about-contacts">
+    <div class="container">
+        <div class="about-contacts__inner">
+            <p class="subtitle">Форма обратной связи</p>
+            <h3 class="title">Заказать звонок</h3>
+            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eos sunt doloribus omnis iure ullam reprehenderit dolorum ea laudantium repellendus quasi, voluptatem temporibus sed, quis ab cupiditate? Similique, nisi voluptatum.</p>
+            <form action="{% url 'contact' %}" class="about-contacts__form" method="post">
+            {% csrf_token %}
+            {{ contact_form }}
+            
+            
+            <button class="btn-primary about-contacts__btn">Отправить</button>
+            
+            </form>
+        
+        </div>
+    </div>
+</div>
