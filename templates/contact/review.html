@@ -1,0 +1,42 @@
+
+
+
+{% extends 'base.html' %}
+
+{% block title %}  {% endblock %}
+{% block description %}  {% endblock %}
+{% block keywords %}  {% endblock %}
+{% block canonical %} {% endblock %}
+{% block og:title %}  {% endblock %}
+{% block og:description %} {% endblock %}
+{% block og:url %} {% endblock %}
+{% block twitter:title %} {% endblock %}
+{% block twitter:description %} {% endblock %}
+{% block og:site_name %} {% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="review">
+    <div class="container">
+        <div class="review__inner">
+        <h1 class="title">Оставьте свой отзыв о нашей работе</h1>
+            <form action="{% url 'rewiew_create' %}" class="review__form" method="post">
+                {% csrf_token %}
+                {{ form }}
+
+
+                <p class="review__error">{{ error }}</p>
+                
+                <button class=" btn-primary review__btn" type="submit">Отправить</button>
+
+            </form>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
