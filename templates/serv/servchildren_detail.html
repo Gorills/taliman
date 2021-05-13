@@ -56,7 +56,8 @@
         
         </div>
     </div>
-    <img src="{{ children.image.url }}" alt="" class="breadcrumbs__img">
+    <img src="{% if children.breadcrumbs %}{{ children.breadcrumbs.url }}{% else %}{{ children.image_prew.url }}{% endif %}" alt="{{ children.title }}" class="breadcrumbs__img">
+
 </div>
 
 
@@ -66,7 +67,7 @@
            
         
              <div class="serv_detail__desc">
-                <center style="margin-bottom: 40px;"><h1>{{ children.title }}</h1></center>
+                <center style="margin-bottom: 40px;"><h1>{{ children.h1 }}</h1></center>
                 {{ children.text | safe }}
             
             </div>

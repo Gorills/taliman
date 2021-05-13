@@ -45,7 +45,7 @@
         
         </div>
     </div>
-    <img src="{{ serv.image_prew.url }}" alt="" class="breadcrumbs__img">
+    <img src="{% if serv.breadcrumbs %}{{ serv.breadcrumbs.url }}{% else %}{{ serv.image_prew.url }}{% endif %}" alt="{{ serv.title }}" class="breadcrumbs__img">
 </div>
 
 <div class="serv_detail">
@@ -68,7 +68,7 @@
             </div>
 
              <div class="serv_detail__desc">
-             <center style="margin-bottom: 40px;"><h1>{{ serv.title }}</h1></center>
+             <center style="margin-bottom: 40px;"><h1>{{ serv.hq }}</h1></center>
                 {{ serv.text | safe }}
             
             </div>
