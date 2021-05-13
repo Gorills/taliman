@@ -1,7 +1,7 @@
 from django.contrib import admin
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
-from .models import Serv, ServImage, ServChildren, Slider, Portfolio, PortfolioProperty, PortfolioImage
+from .models import Serv, ServImage, ServChildren, Slider, Portfolio, PortfolioProperty, PortfolioImage, ServChildrenBlock, ServBlock
 
 # Register your models here.
 
@@ -32,11 +32,33 @@ class ServChildrenAdmin(admin.StackedInline):
     extra = 0
     min_num = 0
 
+
+class ServChildrenBlockForm(forms.ModelForm):
+    text = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+    class Meta:
+        model = ServChildrenBlock
+        fields = '__all__'
+        widgets = {
+            'color': forms.TextInput(attrs={'type': 'color'}),
+            'text_color': forms.TextInput(attrs={'type': 'color'}),
+        }
+
+
+class ServChildrenBlockAdmin(admin.StackedInline):
+    form = ServChildrenBlockForm
+    model = ServChildrenBlock
+    extra = 0
+    min_num = 0
+
 class ServChildrenAdminReg(admin.ModelAdmin):
     model = ServChildren
     form = ServChildrenForm
     list_display = ('title', 'parent', 'slug')
     prepopulated_fields = {'slug': ('title',)}
+    inlines = [
+        ServChildrenBlockAdmin,
+    ]
+
 
 admin.site.register(ServChildren, ServChildrenAdminReg)
 
@@ -48,6 +70,22 @@ class ServAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class ServBlockForm(forms.ModelForm):
+    text = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+    class Meta:
+        model = ServBlock
+        fields = '__all__'
+        widgets = {
+            'color': forms.TextInput(attrs={'type': 'color'}),
+            'text_color': forms.TextInput(attrs={'type': 'color'}),
+        }
+
+class ServBlockAdmin(admin.StackedInline):
+    form = ServBlockForm
+    model = ServBlock
+    extra = 0
+    min_num = 0
+
 class ServAdmin(admin.ModelAdmin):
     form = ServAdminForm
     prepopulated_fields = {'slug': ('title',)}
@@ -58,7 +96,7 @@ class ServAdmin(admin.ModelAdmin):
     inlines = [
         ServImageAdmin,
         ServChildrenAdmin,
-        
+        ServBlockAdmin,
     ]
 admin.site.register(Serv, ServAdmin)
 

@@ -78,7 +78,40 @@
     </div>
 </div>
 
+{% if children.block %}
+    {% for b in children.block.all %}
+        <section class="static" style="background-color:{{ b.color }};color:{{ b.text_color }}">
+            <div class="container">
+                <div class="static__inner">
+                    
 
+            <div class="static__bottom">
+                {% if  b.title %}
+                <h3 class="static__title-bottom">{{ b.title }}</div>
+                <div class="build__span exclusive__span"></div>
+                {% endif %}
+                
+                <p class="build__text"></p>
+                {{ b.text | safe }}
+
+
+                    
+
+            </div>
+                            
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            {% if b.bg %}
+            <img src="{{ b.bg.url }}" alt="{{ b.title }}" class="static__bg">
+            {% endif %}
+        </section>
+    {% endfor %}
+{% endif %}
 
 
 
