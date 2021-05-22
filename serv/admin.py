@@ -95,7 +95,7 @@ class ServAdmin(admin.ModelAdmin):
 
     inlines = [
         ServImageAdmin,
-        ServChildrenAdmin,
+        
         ServBlockAdmin,
     ]
 admin.site.register(Serv, ServAdmin)

@@ -1,0 +1,22 @@
+
+
+
+    
+<form action="{% url 'contactfull' %}" class="contacts__form" method="post">
+    {% csrf_token %}
+    <div class="contacts__form-wrap">
+        {{ full_form.name_2 }}
+        {{ full_form.email_2 }}
+    </div>
+    <div class="contacts__form-wrap">
+        {{ full_form.tel_2 }}
+        {{ full_form.theme_2 }}
+    </div>
+
+    {{ full_form.message_2 }}
+    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
+        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </small>
+    <button class="btn contacts__btn">Отправить</button>
+</form>

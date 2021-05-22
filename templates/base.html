@@ -5,7 +5,7 @@
 {% get_singleton 'myapp' 'Config' as setup %}
 {% get_singleton 'myapp' 'Meta' as meta %}
 {% get_singleton 'myapp' 'Breadcrumbs' as breadcrumbs %}
-
+{% load contact_tags %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -127,7 +127,7 @@
                             </li>
                           
                             <li class="header__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
-                                <a class="header__link close" itemprop="url" href="#">Акции</a>
+                                <a class="header__link close" itemprop="url" href="{% url 'sale' %}">Акции</a>
                                 <meta itemprop="name" content="Контакты" />
                             </li>
 
@@ -270,19 +270,7 @@
     <i class="popup__icon fas fa-times"></i>
     <div class="popup__inner">
     
-    <form action="#" class="popup__form">
-    <input type="text" class="popup__input">
-    <input type="text" class="popup__input">
-    <input name="page" hidden="hidden" value="{{ request.get_full_path }}"  type="text" class="popup__input">
-    <textarea class="popup__input" rows="8"></textarea>
-    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
-        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
-        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
-    </small>
-    <button class="popup__btn">Отправить</button>
-    
-    </form>
-    
+    {% rest_form %}
     
     </div>
 </div>

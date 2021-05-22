@@ -1,5 +1,6 @@
 from django.db import models
 from djsingleton.models import SingletonModel
+from django.urls import reverse
 # Create your models here.
 
 class Config(SingletonModel):
@@ -58,3 +59,27 @@ class Breadcrumbs(SingletonModel):
     class Meta:
         verbose_name = 'Изображение для хлебных крошек'
         verbose_name_plural = 'Изображения для хлебных крошек'
+
+
+class Sale(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Заголовок')
+    desc = models.TextField(verbose_name='Описание')
+    image = models.ImageField(upload_to='sale')
+    text = models.TextField(verbose_name='Текст акции')
+    date = models.DateField(verbose_name='Дата окончания')
+    activate = models.BooleanField(verbose_name='Активость')
+    meta_title = models.CharField(max_length=100, verbose_name='Мета заголовок', null=True)
+    meta_description = models.CharField(max_length=280, verbose_name='Мета описание', null=True)
+    meta_keywords = models.CharField(max_length=200, verbose_name='Ключевые слова', null=True)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('sale_detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
+

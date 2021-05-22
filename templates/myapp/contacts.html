@@ -39,30 +39,15 @@
     </div>
     <img src="{{ breadcrumbs.about.url }}" alt="" class="breadcrumbs__img">
 </div>
-
+{% load contact_tags %}
 
 <div class="contacts">
     <div class="container">
         <div class="contacts__inner">
             <div class="contacts__column contacts__bg-primary">
                 <h2 class="contacts__title">Есть вопросы? Мы перезвоним Вам!</h2>
-                <form action="#" class="contacts__form">
-                    <div class="contacts__form-wrap">
-                        <input type="text" class="contacts__input" placeholder="Имя">
-                        <input type="email" class="contacts__input" placeholder="Email">
-                    </div>
-                    <div class="contacts__form-wrap">
-                        <input type="tel" class="contacts__input" placeholder="Телефон">
-                        <input type="text" class="contacts__input" placeholder="Тема сообщения">
-                    </div>
-
-                    <textarea class="contacts__textarea" name="" id="" cols="30" rows="10" placeholder="Сообщение"></textarea>
-                    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
-                        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
-                        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
-                    </small>
-                    <button class="btn contacts__btn">Отправить</button>
-                </form>
+     
+            {% full_form %}
             
             </div>
             <div class="contacts__column contacts__column-contacts">

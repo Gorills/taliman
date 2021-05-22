@@ -103,21 +103,17 @@
                 <p class="about-clients__text white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
 
                 <div class="about-clients__feedback">
-                    <div class="about-clients__feedback-item">
-                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
-                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
-                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
-                    </div>
-                    <div class="about-clients__feedback-item">
-                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
-                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
-                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
-                    </div>
-                    <div class="about-clients__feedback-item">
-                        <h4 class="about-clients__feedback-title">Lorem, ipsum.</h4>
-                        <p class="about-clients__feedback-text white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, accusamus officiis ex, ad reprehenderit minima totam dolor omnis laudantium aspernatur, eveniet doloremque sit veritatis asperiores eaque? Quidem possimus minima ad!</p>
-                        <p class="about-clients__feedback-name">Lorem, ipsum.</p>
-                    </div>                    
+               
+                    
+                        {% for rev in review %}
+                        {% if rev.moderate %}
+                        <div class="about-clients__feedback-item">
+                            <h4 class="about-clients__feedback-title">{{ rev.name }}</h4>
+                            <p class="about-clients__feedback-text white">{{ rev.message }}</p>
+                            <p class="about-clients__feedback-name">{{ rev.date | date:"d-m-Y" }}</p>
+                        </div>
+                        {% endif %}
+                        {% endfor %}                 
                 
                 </div>
                 <center><a href="{% url 'review' %}" class="btn about-clients__btn">Оставить отзыв</a></center>

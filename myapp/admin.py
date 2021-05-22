@@ -1,7 +1,7 @@
 from django.contrib import admin
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
-from .models import Breadcrumbs, Config, Social, Phone, Meta, Breadcrumbs
+from .models import Breadcrumbs, Config, Social, Phone, Meta, Breadcrumbs, Sale
 from djsingleton.admin import SingletonAdmin
 
 class SocialAdmin(admin.TabularInline):
@@ -35,3 +35,17 @@ class MetaAdmin(SingletonAdmin):
 admin.site.register(Meta, MetaAdmin)
 
 admin.site.register(Breadcrumbs, SingletonAdmin)
+
+class SaleForm(forms.ModelForm):
+    text = forms.CharField(label='Текст акции', widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Sale
+        fields = '__all__'
+
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date', )
+    save_on_top = True
+    form = SaleForm
+    prepopulated_fields = {'slug': ('title',)}
+
+admin.site.register(Sale, SaleAdmin)

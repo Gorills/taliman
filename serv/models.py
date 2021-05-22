@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import activate
 
 # Create your models here.
 class Serv(models.Model):
@@ -135,3 +136,6 @@ class PortfolioImage(models.Model):
     class Meta:
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения'
+
+
+

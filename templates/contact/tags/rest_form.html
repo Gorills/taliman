@@ -1,0 +1,15 @@
+
+
+<form action="{% url 'contact_popup' %}" class="popup__form" method='post'>
+
+        {% csrf_token %}
+        {{ rest_form }}
+
+    <small class="popup__text">This site is protected by reCAPTCHA and the Google 
+        <a class="popup__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a class="popup__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </small>
+    <button class="popup__btn">Отправить</button>
+    
+</form>
+    

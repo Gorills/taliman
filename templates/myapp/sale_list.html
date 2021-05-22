@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+
+{% block title %}  {% endblock %}
+{% block description %}  {% endblock %}
+{% block keywords %} {% endblock %}
+{% block canonical %}  {% endblock %}
+{% block og:title %}  {% endblock %}
+{% block og:description %}  {% endblock %}
+{% block og:url %}  {% endblock %}
+{% block twitter:title %} {% endblock %}
+{% block twitter:description %} {% endblock %}
+
+
+{% block body %}
+{% load static %}
+{% load sorl_thumbnail %}
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs__inner">
+            <h1 class="breadcrumbs__title">Наши акции</h1>
+            <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link" itemprop="item" href="{% url 'index' %}">
+                    <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1" />
+                </li>
+               
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a class="breadcrumbs__link breadcrumbs__item--active" itemscope itemtype="https://schema.org/WebPage"
+                    itemprop="item" href="{% url 'sale' %}">
+                    <span itemprop="name">Акции</span></a>
+                    <meta itemprop="position" content="2" />
+                </li>
+
+          
+            </ol>
+        
+        </div>
+    </div>
+    <img src="{{ breadcrumbs.sale.url }}" alt="акции" class="breadcrumbs__img">
+</div>
+
+
+<div class="sale">
+    <div class="container">
+        <div class="sale__inner">
+            
+            {% for sale in object_list %}
+               
+                    <div class="sale__item">
+                        <img src="{{ sale.image.url }}" alt="{{ sale.title }}" class="sale__img">
+                        <div class="sale__wrap">
+                            <h3 class="sale__title">{{ sale.title }}</h3>
+                            <p class="sale__desc">{{ sale.desc }}</p>
+                            <a href="{{ sale.get_absolute_url }}" class="sale__link">Подробнее</a>
+
+                        </div>
+                        <p class="sale__date">Действует до: {{ sale.date }}</p>
+
+                    </div>
+              
+            
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
