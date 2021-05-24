@@ -113,24 +113,27 @@
                 <div class="static__inner">
                     
 
-            <div class="static__bottom">
-                {% if  b.title %}
-                <h3 class="static__title-bottom">{{ b.title }}</div>
-                <div class="build__span exclusive__span"></div>
-                {% endif %}
-                
-                <p class="build__text"></p>
-                {{ b.text | safe }}
+                    <div class="static__bottom">
+                        {% if  b.title %}
+                        <h3 class="static__title-bottom">{{ b.title }}</div>
+                        <div class="build__span exclusive__span"></div>
+                        {% endif %}
+                        
+                        <p class="build__text"></p>
+                        {{ b.text | safe }}
 
 
-                    
-
-            </div>
                             
 
                     </div>
-
+                    {% if b.button %}
+                    <center>
+                        <a href="" class="btn show-popup">{{ b.button }}</a>
+                    </center>
+                    {% endif %}
                 </div>
+
+                
 
 
             </div>

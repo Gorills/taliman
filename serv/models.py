@@ -32,6 +32,7 @@ class ServBlock(models.Model):
     text_color = models.CharField(max_length=20, verbose_name='Цвет текста', null=True, blank=True)
     bg = models.ImageField(upload_to='remontblock', verbose_name='Фон', null=True, blank=True)
     parent = models.ForeignKey(Serv, on_delete=models.CASCADE, related_name='block', verbose_name='цвет')
+    button = models.CharField(max_length=150, verbose_name='Текст кнопки', null=True, blank=True)
     class Meta:
         verbose_name = 'Дополнительный блок'
         verbose_name_plural = 'Дополнительные блоки'
@@ -76,6 +77,8 @@ class ServChildrenBlock(models.Model):
     text_color = models.CharField(max_length=20, verbose_name='Цвет текста', null=True, blank=True)
     bg = models.ImageField(upload_to='remontblock', verbose_name='Фон', null=True, blank=True)
     parent = models.ForeignKey(ServChildren, on_delete=models.CASCADE, related_name='block', verbose_name='блок')
+    button = models.CharField(max_length=150, verbose_name='Текст кнопки', null=True, blank=True)
+
     class Meta:
         verbose_name = 'Дополнительный блок'
         verbose_name_plural = 'Дополнительные блоки'

@@ -167,7 +167,12 @@ function windowSize() {
     $('.header__dropdown').mouseleave(function () {
       $(this).removeClass('header__dropdown--active');
     });
-  } else {}
+  } else {
+    $('.header__item-drop').click(function (e) {
+      e.preventDefault();
+      $('.header__dropdown').toggleClass('header__dropdown--active');
+    });
+  }
 }
 
 $(window).on('load resize', windowSize);

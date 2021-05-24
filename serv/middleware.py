@@ -7,7 +7,7 @@ from .models import Serv
 class GetServ(MiddlewareMixin):
     def process_request(self, request):
 
-        serv_list= Serv.objects.all()
+        serv_list= Serv.objects.all().order_by('id')
        
         request.serv_list = serv_list
         
