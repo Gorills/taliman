@@ -25,6 +25,9 @@ class ContactFullView(CreateView):
 
 
 
+
+
+
 def thank(request):
     context = {
 

@@ -23,11 +23,11 @@ class FullContactsForm(forms.ModelForm):
     captcha = ReCaptchaField()
     class Meta:
         model = ContactFull
-        fields = ['name_2', 'tel_2', 'email_2', 'theme_2', 'message_2', 'captcha']
+        fields = ('name_2', 'tel_2', 'email_2', 'theme_2', 'message_2', 'captcha')
         widgets = {
             'name_2': forms.TextInput(attrs={'class': 'contacts__input', 'placeholder': 'Имя'}),
             'tel_2': forms.TextInput(attrs={'class': 'contacts__input', 'placeholder': 'Телефон'}),
-            'email_2': forms.EmailInput(attrs={'class': 'contacts__input', 'placeholder': 'Email'}),
+            'email_2': forms.TextInput(attrs={'class': 'contacts__input', 'placeholder': 'Email'}),
             'theme_2': forms.TextInput(attrs={'class': 'contacts__input', 'placeholder': 'Тема сообщения'}),
             'message_2': forms.Textarea(attrs={'class': 'contacts__textarea', 'placeholder': 'Сообщение'}),
         }

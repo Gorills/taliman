@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from serv.models import Slider, Portfolio
 from django.views.generic import ListView, DetailView
-from contact.models import Review
+
+from contact.forms import FullContactsForm
 from .models import Sale
 
 
@@ -24,6 +25,24 @@ def contacts(request):
     }
 
     return render(request, 'myapp/contacts.html', context)
+
+
+def contacts(request):
+    if request.method == "POST":
+        form = FullContactsForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            
+            post.save()
+            return redirect('/contact-us/thank-you/')
+    else:
+        form = FullContactsForm()
+
+    return render(request, 'myapp/contacts.html', {'form': form})
+
+
+
+
 
 class PortfolioList(ListView):
     paginate_by = 9
