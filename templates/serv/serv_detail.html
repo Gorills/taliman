@@ -104,8 +104,11 @@
     </div>
 </div>
 
+{% load contact_tags %}
+{% contact_form %}
 
-    
+
+
 {% if serv.block %}
     {% for b in serv.block.all %}
         <section class="static" style="background-color:{{ b.color }};color:{{ b.text_color }}">

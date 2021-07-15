@@ -19,7 +19,7 @@
 <div class="breadcrumbs">
     <div class="container">
         <div class="breadcrumbs__inner">
-            <h2 class="breadcrumbs__title">О нас</h2>
+            <h1 class="breadcrumbs__title">О нас</h1>
             <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <li class="breadcrumbs__item" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
@@ -50,12 +50,51 @@
             </div>
             <div class="about__right">
                 <h3 class="about__subtitle">О нас</h3>
-                <h2 class="about__title">История Компании</h2>
+                <h2 class="about__title">Компания ООО «Толиман»</h2>
 
                 <p class="about__text">
-                On the other hand, we denounce with righteous indignation the foult anuals dislike men who are so beguiled and demoralized by the nuhaiicharms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound toen sue; and equal blame belongs to those who fail in their duty...
+
+                Компания  выполняет широкий круг строительно-монтажных работ. Наша компания производит проектирование и строительные работы.  У нас лучшая команда, которая использует новейшие технологии в строительстве. 
+                
+
                 
                 </p>
+                <h3 class="about__subtitle">Мы готовы предложить широкий спектр услуг:</h3>
+                <ul class="about__list">
+                    <li class="about__li">Проектирование коттеджей, домов и зданий любых назначений</li>
+                    <li class="about__li">Строительство домов из любого материала: дерево, кирпич, брус, блоки, каркас</li>
+                    <li class="about__li">Изготовление, монтаж. Металлоконструкций</li>
+                    <li class="about__li">Отделочные работы</li>
+                    <li class="about__li">Монолитные работы</li>
+                    <li class="about__li">Сантехнические работы</li>
+                    <li class="about__li">Высотные работы</li>
+                    <li class="about__li">Электромонтажные работы</li>
+                    <li class="about__li">Работы бетонные</li>
+                    <li class="about__li">А также Строительные материалы по низким ценам в Томске.</li>
+                </ul>
+                
+              
+
+                <h3 class="about__subtitle"> Наши преимущества:</h3>
+                <ul class="about__list">
+                        <li class="about__li">Обратившись в нашу компанию, вы получите максимально квалифицированную помощь специалистов.</li>
+                        <li class="about__li">Строго соблюдаем все обязательства по договору!</li>
+                        <li class="about__li">Гарантия качества!</li>
+                        <li class="about__li">Проектирование и строительство в соответствии со всеми нормативно-техническими требованиями!</li>
+                    
+                    </ul>
+                
+                
+                
+                 <h3 class="about__subtitle"> Дополнительная инормация.</h3>
+                <p class="about__text">
+                электромонтажные работы, фундаментные работы, утепление, строительство навесов, строительство коттеджей, строительство каркасных домов, строительство домов, проектирование коттеджей, проектирование домов, доставка.
+
+                </p>
+                <h3 class="about__subtitle"> Варианты оплаты:</h3>
+               
+                
+                авансовый платеж, безналичный расчет, договорная, наличными, предоплата.
             </div>
         
         </div>
@@ -69,21 +108,21 @@
             <div class="about-per__item">
                 <i class="about-per__icon fas fa-map-marker-alt"></i>
                 <div class="about-per__wrap">
-                <p class="about-per__count">850</p>
+                <p class="about-per__count">80</p>
                 <p class="about-per__text">Выполненных заказов</p>
                 </div>
             </div>
               <div class="about-per__item">
                 <i class="about-per__icon fas fa-map-marker-alt"></i>
                 <div class="about-per__wrap">
-                <p class="about-per__count">40</p>
+                <p class="about-per__count">23</p>
                 <p class="about-per__text">Человек в штате</p>
                 </div>
             </div>
                <div class="about-per__item">
                 <i class="about-per__icon fas fa-map-marker-alt"></i>
                 <div class="about-per__wrap">
-                <p class="about-per__count">250</p>
+                <p class="about-per__count">120</p>
                 <p class="about-per__text">Разработанных проектов</p>
                 </div>
             </div>
@@ -97,7 +136,7 @@
 <div class="about-clients" id="rewiew">
     
         <div class="about-clients__inner">
-            <div class="about-clients__column about-clients__ptimary">
+            <div class="about-clients__column about-clients__ptimary" style="width: 100%;">
                 <p class="about-clients__subtitle white">Наши клиеты</p>
                 <h3 class="about-clients__title about-clients__after-white">Отзывы о нашей работе</h3>
                 <p class="about-clients__text white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
@@ -119,7 +158,7 @@
                 <center><a href="{% url 'review' %}" class="btn about-clients__btn">Оставить отзыв</a></center>
                 
             </div>
-            <div class="about-clients__column taend">
+            {% comment %} <div class="about-clients__column taend">
                 <p class="about-clients__subtitle primary">Наши клиенты</p>
                 <h3 class="about-clients__title about-clients__after-primary">Клиенты, с которыми мы работаем</h3>
                 <p class="about-clients__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
@@ -145,7 +184,7 @@
                 
                 </div>
             
-            </div>
+            </div> {% endcomment %}
         </div>
 
 </div>
@@ -160,24 +199,7 @@
             <a href="" class="about-partners__item">
                 <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
             </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
-             <a href="" class="about-partners__item">
-                <img src="{% static 'images/stroyipark.png' %}" alt="" class="about-partners__img">
-            </a>
+            
             
             
             </div>

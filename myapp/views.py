@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from serv.models import Slider, Portfolio
+from contact.models import Review
+
 from django.views.generic import ListView, DetailView
 
 from contact.forms import FullContactsForm
